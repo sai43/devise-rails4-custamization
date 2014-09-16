@@ -1,0 +1,66 @@
+<style type="text/css">
+  .body{
+    width: 200px;
+  }
+
+
+</style>
+
+
+<div class="body">
+
+<h2>Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+   <div>
+    <%= f.label :firstname %>
+    <%= f.text_field :firstname, autofocus: true %>
+  </div>
+
+  <div><%= f.label :lastname %>
+    <%= f.text_field :lastname %>
+  </div>
+
+  <div><%= f.label :company_name %>
+    <%= f.text_field :company_url %>
+  </div>
+
+  <div><%= f.label :email %>
+  <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <div><%= f.label :password %> <% if @validatable %><i>(<%= @minimum_password_length %> characters minimum)</i><% end %><br />
+    <%= f.password_field :password, autocomplete: "off" %></div>
+
+  <div><%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+
+ <div >
+   <%= f.label :select_security_question1 %>
+                   
+                <%= f.select :security_question1, SecurityQuestions.all.collect {|s| [s.security_question1]}%>
+
+              <%= f.label :security_question_1_ans %>    
+                <%= f.text_field :security_question_1_ans %></div>
+</div> 
+
+ <div >
+     <%= f.label :select_security_question2 %>
+    <%= f.select :security_question2, SecurityQuestions.all.collect {|s| [s.security_question1]}%>
+
+<%= f.label :security_question_2_ans %>  
+<%= f.text_field :security_question_2_ans %>
+</div> 
+ 
+<%= f.label :Type_Displayed_CAPTACH%>
+<p><%= captcha_tag %></p> 
+<p><%= text_field_tag :captcha %></p> 
+
+   <div><%= f.submit "Sign up" %></div>
+<% end %>
+
+<%= render "devise/shared/links" %>
+</div>
